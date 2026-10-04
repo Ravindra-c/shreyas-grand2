@@ -1,0 +1,11 @@
+import {useState,useMemo} from 'react';
+import {PageHead,Section,Img} from '../components/common.jsx';
+import {menu,categories} from '../data/menu.js';
+import {fmt} from '../data/rooms.js';
+export default function Menu(){const [cat,setCat]=useState('All');const [q,setQ]=useState('');const [diet,setDiet]=useState('all');
+const list=useMemo(()=>menu.filter(m=>(cat==='All'||m.category===cat)&&(diet==='all'||(diet==='veg')===m.veg)&&m.name.toLowerCase().includes(q.trim().toLowerCase())),[cat,q,diet]);
+return <><PageHead title="Menu" sub="Sample menu — items and prices are placeholders until the restaurant supplies the final menu." img="/images/restaurant.webp"/><Section>
+<div className="mb-6 flex flex-wrap gap-3"><label className="sr-only" htmlFor="s">Search menu</label><input id="s" type="search" value={q} onChange={e=>setQ(e.target.value)} placeholder="Search dishes" className="min-h-11 w-full rounded-full border border-ink/20 bg-white px-5 sm:w-72"/>
+{[['all','All'],['veg','Veg'],['non','Non-veg']].map(([k,l])=><button key={k} aria-pressed={diet===k} onClick={()=>setDiet(k)} className={`min-h-11 rounded-full border px-5 text-sm ${diet===k?'bg-emerald text-ivory':'border-ink/20'}`}>{l}</button>)}</div>
+<div className="mb-8 flex gap-2 overflow-x-auto pb-2">{['All',...categories].map(c=><button key={c} aria-pressed={cat===c} onClick={()=>setCat(c)} className={`shrink-0 rounded-full px-4 py-2 text-sm ${cat===c?'bg-gold text-ink':'bg-white'}`}>{c}</button>)}</div>
+{list.length?<ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{list.map(m=><li key={m.id} className="group overflow-hidden rounded-2xl border border-ink/10 bg-white"><Img src={m.img} alt={m.name} ratio="aspect-[16/9]"/><div className="p-4"><div className="flex items-start justify-between gap-2"><h3 className="text-xl">{m.name}</h3><span className={`mt-1 rounded border px-1.5 text-xs ${m.veg?'border-green-700 text-green-700':'border-red-700 text-red-700'}`}>{m.veg?'Veg':'Non-veg'}</span></div>{m.popular&&<p className="text-xs text-gold">Popular</p>}<p className="mt-1 text-sm text-mist">{m.desc}</p><p className="mt-2 text-sm font-medium">{m.price?fmt(m.price):'Price on request'}</p></div></li>)}</ul>:<p role="status" className="py-16 text-center text-mist">No dishes match your search. Try another keyword or filter.</p>}</Section></>}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.hotelshreyasgrand.com/sitemap.xml

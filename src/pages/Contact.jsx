@@ -1,0 +1,5 @@
+import {PageHead,Section,Btn} from '../components/common.jsx';
+import {hotel,tel} from '../data/hotel.js';
+import {wa,msgs} from '../utils/links.js';
+export default function Contact(){return <><PageHead title="Contact" sub="We'd love to hear from you." img="/images/hotel-exterior.webp"/><Section><div className="grid gap-10 md:grid-cols-2"><div className="space-y-3"><address className="not-italic text-lg">{hotel.address}</address><p><a className="underline" href={tel(hotel.phone)}>{hotel.phone}</a> · <a className="underline" href={tel(hotel.phoneAlt)}>{hotel.phoneAlt}</a></p><p><a className="break-all underline" href={`mailto:${hotel.email}`}>{hotel.email}</a></p></div>
+<div className="flex flex-wrap content-start gap-3"><Btn href={hotel.directionsUrl}>Directions</Btn><Btn href={hotel.mapsUrl} variant="dark">Open in Google Maps</Btn><Btn href={tel(hotel.phone)} variant="dark">Call</Btn><Btn href={wa(msgs.general)} variant="dark">WhatsApp</Btn><Btn to="/booking" variant="dark">Booking enquiry</Btn></div></div></Section></>}

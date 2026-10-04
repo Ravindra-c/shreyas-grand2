@@ -1,0 +1,2 @@
+import {Btn} from '../components/common.jsx';
+export default function NotFound(){return <section className="grid min-h-[70vh] place-items-center px-5 pt-24 text-center"><div><p className="text-gold">404</p><h1 className="mt-2 text-4xl md:text-6xl">Page not found</h1><p className="mt-3 text-mist">This page does not exist or has moved.</p><Btn to="/" variant="dark" className="mt-6">Back to Home</Btn></div></section>}

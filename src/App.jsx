@@ -1,0 +1,5 @@
+import {Routes,Route} from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';import Rooms from './pages/Rooms.jsx';import RoomDetails from './pages/RoomDetails.jsx';import Dining from './pages/Dining.jsx';import Menu from './pages/Menu.jsx';
+import Banquet from './pages/Banquet.jsx';import Gallery from './pages/Gallery.jsx';import About from './pages/About.jsx';import Contact from './pages/Contact.jsx';import Booking from './pages/Booking.jsx';import NotFound from './pages/NotFound.jsx';
+export default function App(){return <Routes><Route element={<Layout/>}><Route index element={<Home/>}/><Route path="rooms" element={<Rooms/>}/><Route path="rooms/:id" element={<RoomDetails/>}/><Route path="dining" element={<Dining/>}/><Route path="menu" element={<Menu/>}/><Route path="banquets" element={<Banquet/>}/><Route path="gallery" element={<Gallery/>}/><Route path="about" element={<About/>}/><Route path="contact" element={<Contact/>}/><Route path="booking" element={<Booking/>}/><Route path="*" element={<NotFound/>}/></Route></Routes>}
